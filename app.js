@@ -1,8 +1,20 @@
-// Listen for submit
-document.getElementById('loan-form').addEventListener('submit', calculateResults);
+// Listen for submit original code
+//document.getElementById('loan-form').addEventListener('submit', calculateResults);
+document.getElementById('loan-form').addEventListener('submit', function(e){
+    // Hide results
+    document.getElementById('results').style.display = 'none';
+    // Show loader
+    document.getElementById('loading').style.display = 'block';
+    
+    setTimeout(calculateResults, 2000);
 
-// Calculating Results
-function calculateResults(e) {
+    e.preventDefault();
+});
+
+
+
+// Calculating Results took out e because it not longer going to be an event handler and also e.preventDefault();
+function calculateResults() {
     console.log('Calculating...');
 
     // UI Variables
@@ -25,16 +37,25 @@ function calculateResults(e) {
        monthlyPayment.value = monthly.toFixed(2);
        totalPayment.value = (monthly * calculatedPayments).toFixed(2);
        totolInterest.value = ((monthly * calculatedPayments) - principal).toFixed(2);
+       // Show results
+       document.getElementById('results').style.display = 'block';
+       // Hide loader
+        document.getElementById('loading').style.display = 'none';
     } else {
         showError('Please check your numbers!');
     }
 
-    e.preventDefault();
+   // e.preventDefault();
 }
 
 
 // Show Error
 function showError(error) {
+    // Hide results
+    document.getElementById('results').style.display = 'none';
+    // Hide loader
+    document.getElementById('loading').style.display = 'none';
+
     // Create div
     const errorDiv = document.createElement('div');
     
