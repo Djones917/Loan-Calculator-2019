@@ -81,3 +81,4 @@ function clearError() {
     document.querySelector('.alert').remove();
 }  
 
+// Finished with project
